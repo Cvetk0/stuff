@@ -1,6 +1,3 @@
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
 set laststatus=2
 set t_Co=256
 set paste
@@ -13,6 +10,9 @@ call vundle#begin()
 
 " Vundle plugins go here "
 Plugin 'glench/vim-jinja2-syntax'
+
+" Bundles
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 call vundle#end()            " required
 filetype plugin indent on    " required
