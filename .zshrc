@@ -69,6 +69,7 @@ plugins=(
   git
   virtualenv
   vundle
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,6 +118,9 @@ prompt spaceship
 autoload zkbd
 [[ ! -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && zkbd
 source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+
+# Load compinit
+autoload -U compinit && compinit
 
 [[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
