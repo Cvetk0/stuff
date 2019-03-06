@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/jkladnik/.oh-my-zsh"
@@ -63,8 +64,11 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  docker
+  docker-compose
   git
   virtualenv
+  vundle
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -128,3 +132,8 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 
 # Tmux scripts
 peek() { tmux split-window -p 33 vim "${@}" || exit; }
+
+# Maven parameters
+export M2_HOME=/usr/local/apache-maven
+export M2=$M2_HOME/bin
+export MAVEN_OPTS="-Xms256m -Xmx512m"
