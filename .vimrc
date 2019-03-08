@@ -1,4 +1,5 @@
 set laststatus=2
+set background=dark
 set t_Co=256
 set paste
 
