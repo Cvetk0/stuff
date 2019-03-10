@@ -134,6 +134,9 @@ autoload -U compinit && compinit
 [[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
 [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
 
+# Override some keybindings from .oh-my-zsh/lib/key-bindings.zsh
+bindkey '^[l' down-case-word
+
 # Tmux scripts
 peek() { tmux split-window -p 33 vim "${@}" || exit; }
 
