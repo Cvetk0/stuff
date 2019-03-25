@@ -3,6 +3,12 @@ set background=dark
 set t_Co=256
 set paste
 
+" Spaces not tabs and auto indent 2 spaces
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+
 " Vundle start "
 set nocompatible              " be iMproved, required
 filetype off                  " required
