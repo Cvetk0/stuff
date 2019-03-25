@@ -64,12 +64,15 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  ansible
   docker
   docker-compose
   git
+  urltools
   virtualenv
   vundle
   zsh-completions
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
