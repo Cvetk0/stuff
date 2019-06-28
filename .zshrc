@@ -119,6 +119,7 @@ prompt spaceship
 
 # Spaceship custom configuration
 SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_BATTERY_THRESHOLD=30
 
 # Key bindings
 autoload zkbd
