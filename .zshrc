@@ -117,6 +117,9 @@ fpath=($fpath "/home/jkladnik/.zfunctions")
 autoload -U promptinit; promptinit
 prompt spaceship
 
+# Spaceship custom configuration
+SPACESHIP_KUBECONTEXT_SHOW=false
+
 # Key bindings
 autoload zkbd
 [[ ! -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && zkbd
