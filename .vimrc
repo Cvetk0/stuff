@@ -22,6 +22,7 @@ call vundle#begin()
 
 " Vundle plugins go here "
 Plugin 'glench/vim-jinja2-syntax'
+Plugin 'leafgarland/typescript-vim'
 
 " Bundles
 Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
