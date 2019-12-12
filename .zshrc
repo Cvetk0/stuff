@@ -65,9 +65,13 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   ansible
+  aws
   docker
   docker-compose
   git
+  helm
+  kubectl
+  rancher
   urltools
   virtualenv
   vundle
@@ -151,3 +155,4 @@ peek() { tmux split-window -p 33 vim "${@}" || exit; }
 export M2_HOME=/usr/local/apache-maven
 export M2=$M2_HOME/bin
 export MAVEN_OPTS="-Xms256m -Xmx512m"
+
