@@ -3,12 +3,19 @@ set background=dark
 set t_Co=256
 set paste
 
+" Disable beeps
+set visualbell
+
 " Spaces not tabs and auto indent 2 spaces
 set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set autoindent
+
+" Search stuff
+set incsearch
+set hlsearch
 
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")

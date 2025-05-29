@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$HOME/.yarn/bin:$HOME/.krew/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/jkladnik/.oh-my-zsh"
+export ZSH="/home/jkladnik/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -64,14 +64,11 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  ansible
-  aws
   docker
   docker-compose
   git
   helm
   kubectl
-  rancher
   urltools
   virtualenv
   vundle
@@ -131,7 +128,16 @@ autoload zkbd
 source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 
 # Load compinit
-autoload -U compinit && compinit
+#autoload -U compinit && compinit
+autoload -Uz compinit
+
+() {
+  if [[ $# -gt 0 ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+} ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
 
 [[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
@@ -148,6 +154,10 @@ autoload -U compinit && compinit
 # Override some keybindings from .oh-my-zsh/lib/key-bindings.zsh
 bindkey '^[l' down-case-word
 
+# Disable beeps
+unsetopt BEEP
+export LESS="$LESS -R -Q"
+
 # Tmux scripts
 peek() { tmux split-window -p 33 vim "${@}" || exit; }
 
@@ -156,3 +166,41 @@ export M2_HOME=/usr/local/apache-maven
 export M2=$M2_HOME/bin
 export MAVEN_OPTS="-Xms256m -Xmx512m"
 
+fpath=($fpath "/home/jkladnik/.zfunctions")
+
+# Default editor
+export EDITOR="vim"
+export VISUAL="vim"
+
+# Completions
+# Kubectl autocompletion
+[[ -f /home/jkladnik/.oh-my-zsh/cache/completions/_kubectl ]] && source /home/jkladnik/.oh-my-zsh/cache/completions/_kubectl
+# Istioctl autocompletion
+# Kubectl autocompletion
+[[ -f /home/jkladnik/.oh-my-zsh/cache/completions/_istioctl ]] && source /home/jkladnik/.oh-my-zsh/cache/completions/_istioctl
+# Helm autocompletion
+source <(helm completion zsh)
+# Terraform autocompletion
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/jkladnik/bin/terraform terraform
+# AZ autocompletion
+source ~/.zcomp/az.completion
+
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Golang Version Manager
+[[ -s "/home/jkladnik/.gvm/scripts/gvm" ]] && source "/home/jkladnik/.gvm/scripts/gvm"
+
+# NPM token for Azure repos
+export NPM_TOKEN=cGc3bGhubHJjdWNud2ZmdWtyNnRtY256bWxmeW1vN2RleDc1cXJicGlnb3N2cnVycXU1YQ
+
+# Export Gitlab token for CI linting
+export GITLAB_API_TOKEN=s6Rdhg2H3uzGW6VFA7wM
+alias gitlab-ci-lint='gitlab-ci-lint ${0} --url https://git.adacta-fintech.com --token ${GITLAB_API_TOKEN}'
+
+# Enable Helm OCI support
+#export HELM_EXPERIMENTAL_OCI=1
+
+. "/home/jkladnik/.acme.sh/acme.sh.env"
